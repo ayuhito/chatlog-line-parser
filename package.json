@@ -1,0 +1,27 @@
+{
+  "name": "chatlog-line-parser",
+  "version": "1.0.0",
+  "description": "A chatlog parser that can take inputs from Discord, Skype, Slack and more!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DecliningLotus/chatlog-line-parser.git"
+  },
+  "keywords": [
+    "chatlog",
+    "logs",
+    "chat",
+    "parser",
+    "discord",
+    "skype"
+  ],
+  "author": "Lotus - lotusdevshack.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DecliningLotus/chatlog-line-parser/issues"
+  },
+  "homepage": "https://github.com/DecliningLotus/chatlog-line-parser#readme"
+}
