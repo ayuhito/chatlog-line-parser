@@ -12,8 +12,7 @@
     "logs",
     "chat",
     "parser",
-    "discord",
-    "skype"
+    "discord"
   ],
   "author": "Lotus - lotusdevshack.com",
   "license": "MIT",
