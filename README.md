@@ -52,14 +52,15 @@ Which should be parsed into message objects such as this:
 ];
 ```
 
-##Installation
+## Installation
+
 You can download this package from npm - https://www.npmjs.com/package/chatlog-line-parser
 
 ```
 npm i chatlog-line-parser
 ```
 
-##Usage
+## Usage
 
 Simply call the function with an input:
 
