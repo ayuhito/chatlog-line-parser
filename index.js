@@ -75,11 +75,12 @@ function sortUserTimeBool(line) {
   if (sorted && sorted.length) {
     username = line.substring(0, line.length - sorted[0].length);
   }
-  if (irc) {
+
+  if (sorted && irc) {
     username = line.substring(sorted[0].length + 1, line.indexOf(": "));
+    sorted[0] = sorted[0].replace(/[\[\]]/g, "");
   }
 
-  sorted[0] = sorted[0].replace(/[\[\]]/g, "");
   //Ternary operator but Prettier doing weird stuff with formatting.
   return !sorted
     ? null
@@ -92,6 +93,6 @@ function sortUserTimeBool(line) {
 
 console.log(
   chatlogLineParser.parse(
-    "9:16 PM] Lotus: for one line, grrr, I'll figure it out myself\n[9:17 PM] justis: <3 I'm kidding.\n[9:17 PM] justis: Knock yourself out.\n[9:17 PM] Lotus: I just looked at the regex and reallly, what other sort of regex am I gonna use lol"
+    "9:17 PM] justis: <3 I'm kidding.\n[9:17 PM] justis: Knock yourself out.\n[9:17 PM] Lotus: I just looked at the regex and reallly, what other sort of regex am I gonna use lol"
   )
 );
