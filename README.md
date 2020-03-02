@@ -1,10 +1,23 @@
 # Chatlog Line Parser
 
-A chatlog parser that can take inputs from Discord, Skype, Slack and more!
+A chatlog parser that can take inputs from Discord, Slack and more!
+
+Currently supported services:
+
+```
+Discord
+Slack
+IRC
+Telegram
+Possibly other services which follow a general format.
+
+Todo -
+Please suggest some!
+```
 
 ## Purpose
 
-Chatlogs on applications such as Discord are difficult to export and share. This parser takes in such inputs and returns them as a message object.
+Chatlogs on applications, such as Discord, are difficult to export and share. This parser takes in such inputs and returns them as a message object.
 
 A typical log would look this:
 
