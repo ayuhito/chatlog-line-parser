@@ -1,6 +1,6 @@
 {
   "name": "chatlog-line-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A chatlog parser that can take inputs from Discord, Slack and more!",
   "main": "index.js",
   "repository": {
