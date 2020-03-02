@@ -33,7 +33,7 @@ class chatlogLineParser {
 
     //Identify if it is an actual message, then package it away.
     if (!sortLine || this.irc) {
-      this.currentMessage;
+      this.currentMessage = line;
       if (this.irc) {
         this.currentMessage = line.substring(
           line.indexOf("]") + this.username.length + 4,
@@ -58,7 +58,7 @@ function sortUserTimeBool(line) {
   const ddmmyyReg = /((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$/;
   const daytimeReg = /(?=Last|Yesterday|Today)(.*)|((([0]?[1-9]|1[0-2])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?( )?(AM|am|aM|Am|PM|pm|pM|Pm))|(([0]?[0-9]|1[0-9]|2[0-3])(:|\.)[0-5][0-9]((:|\.)[0-5][0-9])?))$/;
   const IRCReg = /^([[0-9]{1,2}:[0-9][0-9].*?)\]/;
-  const telegramReg = null;
+  const telegramReg = /\[([0-9]{2}.[0-9]{2}.[0-9]{2})( )(([0]?[0-9]|1[0-9]|2[0-3])(:)[0-5][0-9]((:)[0-5][0-9])?)\]$/;
 
   let irc = false;
 
@@ -67,17 +67,28 @@ function sortUserTimeBool(line) {
     sorted = line.match(daytimeReg);
   }
   if (!sorted) {
-    irc = true;
     sorted = line.match(IRCReg);
+    if (sorted) {
+      irc = true;
+    }
+  }
+  if (!sorted) {
+    sorted = line.match(telegramReg);
   }
 
   let username;
-  if (sorted && sorted.length) {
+  if (sorted && sorted[0].length) {
     username = line.substring(0, line.length - sorted[0].length);
+    if (line.match(telegramReg)) {
+      username = line.substring(0, line.length - sorted[0].length - 2);
+    }
   }
 
   if (sorted && irc) {
     username = line.substring(sorted[0].length + 1, line.indexOf(": "));
+  }
+
+  if (sorted) {
     sorted[0] = sorted[0].replace(/[\[\]]/g, "");
   }
 
@@ -90,9 +101,3 @@ function sortUserTimeBool(line) {
         irc: Boolean(irc)
       };
 }
-
-console.log(
-  chatlogLineParser.parse(
-    "9:17 PM] justis: <3 I'm kidding.\n[9:17 PM] justis: Knock yourself out.\n[9:17 PM] Lotus: I just looked at the regex and reallly, what other sort of regex am I gonna use lol"
-  )
-);
